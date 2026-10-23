@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>セカライセトリメーカー</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main class="container">
+    <header class="page-header">
+      <p class="subtitle">自分だけのセットリストを作ろう</p>
+      <h1>セカライセトリメーカー</h1>
+      <p>候補曲を選び、セトリA・Bを組み立てるツールです。</p>
+    </header>
+
+<section class="panel" aria-labelledby="save-title">
+  <h2 id="save-title">保存・読み込み</h2>
+
+  <p class="helper">
+    自動保存は、この端末・ブラウザだけで有効です。
+    別の端末への移行やバックアップには、保存ファイルを使ってください。
+  </p>
+
+  <div class="save-actions">
+    <button id="export-button" type="button">
+      保存ファイルを書き出す
+    </button>
+
+    <button id="import-button" type="button">
+      保存ファイルを読み込む
+    </button>
+
+    <button id="reset-button" type="button">
+      選択内容を初期化
+    </button>
+  </div>
+
+  <input
+    id="import-file"
+    type="file"
+    accept=".json,application/json"
+    hidden
+  >
+
+  <p id="save-status" class="helper" role="status">
+    保存機能を準備しています…
+  </p>
+
+</section>
+
+    <p id="error-message" class="error" role="alert" hidden></p>
+
+    <section class="panel" aria-labelledby="summary-title">
+      <h2 id="summary-title">バーチャルシンガー登場回数</h2>
+      <p class="helper">
+        1曲につき、歌唱するVSをそれぞれ1回と数えます。
+      </p>
+      <div id="summary" class="table-scroll"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="song-list-title">
+      <div class="section-header">
+        <h2 id="song-list-title">① 候補曲を選ぶ</h2>
+        <p id="song-count">読み込み中…</p>
+      </div>
+
+      <div class="filters">
+        <label>
+          ユニット
+          <select id="unit-filter"></select>
+        </label>
+
+        <label>
+          区分
+          <select id="category-filter"></select>
+        </label>
+
+        <label>
+          曲名検索
+          <input
+            id="song-search"
+            type="search"
+            placeholder="曲名の一部を入力"
+          >
+        </label>
+
+        <label class="check-label">
+          <input id="selected-only" type="checkbox">
+          選択した候補曲だけ表示
+        </label>
+      </div>
+
+      <div id="song-list" class="song-list"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="setlists-title">
+      <h2 id="setlists-title">② セトリを組む</h2>
+      <p class="helper">
+        候補に選んだ曲を配置できます。同じ曲をA・Bの両方で使えます。
+      </p>
+
+      <div class="setlists-grid">
+        <section aria-labelledby="setlist-a-title">
+          <h3 id="setlist-a-title">セトリA</h3>
+          <div id="setlist-A"></div>
+        </section>
+
+        <section aria-labelledby="setlist-b-title">
+          <h3 id="setlist-b-title">セトリB</h3>
+          <div id="setlist-B"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="./songs.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
